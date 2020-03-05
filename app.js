@@ -6,7 +6,8 @@ var track = null;
 const cameraView = document.querySelector("#camera--view"),
     cameraOutput = document.querySelector("#camera--output"),
     cameraSensor = document.querySelector("#camera--sensor"),
-    cameraTrigger = document.querySelector("#camera--trigger");
+    cameraTrigger = document.querySelector("#camera--trigger"),
+    cameraSwitcher = document.querySelector("#camera--switcher");
 
 // Access the device camera and stream to cameraView
 function cameraStart() {
@@ -29,6 +30,12 @@ cameraTrigger.onclick = function() {
     cameraOutput.src = cameraSensor.toDataURL("image/webp");
     cameraOutput.classList.add("taken");
     // track.stop();
+};
+
+// Take a picture when cameraTrigger is tapped
+cameraSwitcher.onclick = function() {
+  constraints.video.facingMode = "environment";
+  // track.stop();
 };
 
 // Start the video stream when the window loads
