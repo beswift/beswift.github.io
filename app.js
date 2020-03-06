@@ -35,6 +35,15 @@ cameraTrigger.onclick = function() {
 // Take a picture when cameraTrigger is tapped
 cameraSwitcher.onclick = function() {
   constraints.video.facingMode = "environment";
+  navigator.mediaDevices
+        .getUserMedia(constraints)
+        .then(function(stream) {
+            track = stream.getTracks()[0];
+            cameraView.srcObject = stream;
+        })
+        .catch(function(error) {
+            console.error("Oops. Something is broken.", error);
+        });
   // track.stop();
 };
 
